@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leitor de Texto com Síntese de Voz</title>
+    <style>
+        /* Estilos para o botão */
+        #botaoLer {
+            width: 200px; /* Largura fixa */
+            height: 40px; /* Altura fixa */
+            padding: 10px; /* Espaçamento interno */
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            outline: none; /* Removendo a borda ao focar */
+            display: inline-block; /* Permitindo que o tamanho do botão seja definido */
+            text-align: center; /* Alinhando o texto ao centro */
+            line-height: 20px; /* Alinhando o texto verticalmente */
+        }
+
+        /* Ícone de play/pause */
+        #botaoLer::before {
+            content: '▶'; /* Símbolo de play */
+            font-size: 20px;
+            vertical-align: middle; /* Alinhando o ícone verticalmente */
+            margin-right: 5px; /* Espaçamento entre o ícone e o texto */
+        }
+
+        /* Estilo do botão quando pausado */
+        #botaoLer.pausado::before {
+            content: '❚❚'; /* Símbolo de pause */
+        }
+    </style>
+</head>
+<body>
+    
+    <button id="botaoLer">Iniciar Leitura</button>
+
+    <article>
+        <h2>Tutorial: Hello, World! com Flask em Python</h2>
+        <p>Neste tutorial, vamos criar um simples aplicativo "Hello, World!" utilizando o framework Flask em Python.</p>
+        <h3>O que é Flask e suas vantagens?</h3>
+        <p>Flask é um framework leve em Python para criar aplicativos web. Algumas vantagens do Flask incluem:</p>
+        <ul>
+            <li><strong>Simplicidade:</strong> Flask é conhecido por sua simplicidade e facilidade de uso. Ele permite que os desenvolvedores criem aplicativos web rapidamente com poucas linhas de código.</li>
+            <li><strong>Flexibilidade:</strong> Flask é altamente flexível e permite aos desenvolvedores escolherem as ferramentas e bibliotecas que melhor se adequam às suas necessidades, em vez de impor uma estrutura rígida.</li>
+            <li><strong>Extensibilidade:</strong> Flask possui uma ampla variedade de extensões disponíveis que facilitam a adição de funcionalidades extras, como autenticação de usuários, manipulação de formulários, e muito mais.</li>
+            <li><strong>Comunidade Ativa:</strong> Flask possui uma comunidade ativa de desenvolvedores que fornecem suporte e contribuem com extensões e recursos úteis, tornando-o uma escolha popular para o desenvolvimento web em Python.</li>
+        </ul>
+        <p>Essas são apenas algumas das vantagens do Flask, e sua popularidade continua a crescer entre os desenvolvedores devido à sua simplicidade e flexibilidade.</p>
+        
+        <h3>Passo 1: Instalação do Flask</h3>
+        <p>Primeiro, vamos instalar o Flask em nosso ambiente Python. Abra o terminal (ou prompt de comando) e execute o seguinte comando:</p>
+        <div class="code-box">
+            <pre><code>pip install Flask</code></pre>
+        </div>
+        <p>Isso instalará o Flask e suas dependências em seu ambiente Python.</p>
+        
+        <h3>Passo 2: Criar o aplicativo Flask</h3>
+        <p>Agora, vamos criar um arquivo Python para nosso aplicativo Flask. Crie um arquivo chamado <code>app.py</code> e adicione o seguinte código:</p>
+        <div class="code-box">
+            <pre><code>from flask import Flask
+    
+    app = Flask(__name__)
+    
+    @app.route('/')
+    def hello_world():
+        return 'Hello, World!'
+    
+    if __name__ == '__main__':
+        app.run(debug=True)</code></pre>
+        </div>
+        <p>Este código define um aplicativo Flask simples que retorna "Hello, World!" quando acessado através do navegador.</p>
+        
+        <h3>Passo 3: Executar o aplicativo Flask</h3>
+        <p>Agora, podemos executar nosso aplicativo Flask. No terminal, navegue até o diretório onde o arquivo <code>app.py</code> está localizado e execute o seguinte comando:</p>
+        <div class="code-box">
+            <pre><code>python app.py</code></pre>
+        </div>
+        <p>Isso iniciará o servidor de desenvolvimento do Flask. Abra um navegador e acesse <code>http://localhost:5000</code>. Você deverá ver a saída "Hello, World!".</p>
+        
+        <h3>Passo 4: Criar uma aplicação web simples com HTML e CSS</h3>
+        <p>Agora, vamos criar uma página HTML simples para exibir uma mensagem "Hello, World!" estilizada com CSS.</p>
+        <p>Crie um arquivo chamado <code>index.html</code> e adicione o seguinte código:</p>
+        <div class="code-box">
+            <pre><code>&lt;!DOCTYPE html&gt;
+    &lt;html lang="en"&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+        &lt;title&gt;Minha Página&lt;/title&gt;
+        &lt;link rel="stylesheet" href="styles.css"&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;div class="container"&gt;
+            &lt;h1&gt;Hello, World!&lt;/h1&gt;
+        &lt;/div&gt;
+    &lt;/body&gt;
+    &lt;/html&gt;</code></pre>
+        </div>
+        <p>Agora, crie um arquivo chamado <code>styles.css</code> e adicione o seguinte código para estilizar a página:</p>
+        <div class="code-box">
+            <pre><code>body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .container {
+        text-align: center;
+        margin-top: 100px;
+    }</code></pre>
+        </div>
+        <p>Agora, vamos modificar nosso aplicativo Flask para servir esta página HTML. Abra o arquivo <code>app.py</code> e modifique-o da seguinte maneira:</p>
+        <div class="code-box">
+            <pre><code>from flask import Flask, render_template
+    
+    app = Flask(__name__)
+    
+    @app.route('/')
+    def hello_world():
+        return render_template('index.html')
+    
+    if __name__ == '__main__':
+        app.run(debug=True)</code></pre>
+        </div>
+        <p>Agora, quando você acessar <code>http://localhost:5000</code>, verá a página HTML "Hello, World!" estilizada com CSS.</p>
+        
+        <h3>Conclusão</h3>
+        <p>Parabéns! Você criou com sucesso um simples aplicativo "Hello, World!" utilizando o framework Flask em Python e adicionou uma página web simples com HTML e CSS. Este é apenas o começo de sua jornada com Flask, e agora você pode começar a explorar os recursos poderosos que ele oferece para o desenvolvimento de aplicativos web em Python.</p>
+    </article>
+
+    <audio controls id="audioPlayer" style="display: none;">
+        <source src="" type="audio/wav">
+        Seu navegador não suporta o elemento de áudio.
+    </audio>
+
+    <script>
+     const botaoLer = document.getElementById('botaoLer');
+const audioPlayer = document.getElementById('audioPlayer');
+let utterance;
+let isLendo = false;
+let lastCharIndex = 0;
+
+botaoLer.addEventListener('click', function () {
+    if (!isLendo) {
+        isLendo = true;
+        botaoLer.classList.add('pausado'); // Adiciona a classe 'pausado' para alterar o ícone
+        botaoLer.textContent = 'Pausar';
+        let texto = '';
+        const elementosTexto = document.querySelectorAll('p, h1, h2, h3, h4, h5, h6, li, span'); // Seleciona todos os elementos de texto na página
+        elementosTexto.forEach(elemento => {
+            texto += elemento.textContent + '\n'; // Adiciona o conteúdo de cada elemento de texto à string 'texto'
+        });
+        if (!utterance) {
+            utterance = new SpeechSynthesisUtterance(texto);
+            utterance.lang = 'pt-BR'; // Define o idioma como português do Brasil
+            utterance.onend = function () {
+                isLendo = false;
+                botaoLer.textContent = 'Ouvir';
+                botaoLer.classList.remove('pausado'); // Remove a classe 'pausado' para alterar o ícone de volta para play
+            };
+        } else {
+            window.speechSynthesis.resume();
+        }
+        utterance.text = texto.substr(lastCharIndex);
+        window.speechSynthesis.speak(utterance);
+        audioPlayer.src = URL.createObjectURL(new Blob([texto], { type: 'text/plain' }));
+    } else {
+        isLendo = false;
+        botaoLer.classList.remove('pausado'); // Remove a classe 'pausado' para alterar o ícone de volta para play
+        botaoLer.textContent = 'Ouvir';
+        window.speechSynthesis.pause();
+    }
+});
+
+
+    </script>
+</body>
+</html>
